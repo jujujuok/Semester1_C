@@ -15,6 +15,8 @@ number process_number(char *s_num);
 
 number calculate(number num1, number num2, char op);
 
+int calculate_print_all(number num1, number num2, int form);
+
 int print_result(number num, int format);
 
 #endif
