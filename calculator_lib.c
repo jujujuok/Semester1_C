@@ -58,7 +58,6 @@ number calculate(number num1, number num2, char op)
         result.imag = num1.real * num2.imag + num1.imag * num2.real;
         break;
     case '/':
-
         a = num1.real * num2.real + num1.imag * num2.imag;
         b = num1.imag * num2.real - num1.real * num2.imag;
         n = num2.real * num2.real + num2.imag * num2.imag;
