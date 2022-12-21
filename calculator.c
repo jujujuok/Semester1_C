@@ -55,5 +55,7 @@ int main()
 
     print_result(result, format);
 
+    calculate_print_all(num1, num2, format);
+
     return 0;
 }
