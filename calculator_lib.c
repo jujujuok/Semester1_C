@@ -37,6 +37,43 @@ number process_number(char str_num[100])
     strcpy(num.s_num, str_num);
     return num;
 }
+int calculate_print_all(number num1, number num2, int form)
+{
+    number result;
+    result.a_error = 0;
+    double a, b, n;
+
+    // add
+    result.real = num1.real + num2.real;
+    result.imag = num1.imag + num2.imag;
+    printf("\n\nadd: ");
+    print_result(result, form);
+
+    // sub
+    result.real = num1.real - num2.real;
+    result.imag = num1.imag - num2.imag;
+    printf("\nsub: ");
+    print_result(result, form);
+
+    // mult
+    result.real = num1.real * num2.real - num1.imag * num2.imag;
+    result.imag = num1.real * num2.imag + num1.imag * num2.real;
+    printf("\nmult: ");
+    print_result(result, form);
+
+    // div
+    a = num1.real * num2.real + num1.imag * num2.imag;
+    b = num1.imag * num2.real - num1.real * num2.imag;
+    n = num2.real * num2.real + num2.imag * num2.imag;
+    if (n != 0)
+    {
+        result.real = a / n;
+        result.imag = b / n;
+        printf("\ndiv: ");
+        print_result(result, form);
+    }
+    return 0;
+}
 
 number calculate(number num1, number num2, char op)
 {
@@ -58,6 +95,7 @@ number calculate(number num1, number num2, char op)
         result.imag = num1.real * num2.imag + num1.imag * num2.real;
         break;
     case '/':
+
         a = num1.real * num2.real + num1.imag * num2.imag;
         b = num1.imag * num2.real - num1.real * num2.imag;
         n = num2.real * num2.real + num2.imag * num2.imag;
@@ -89,7 +127,15 @@ int print_result(number num, int format)
     switch (format)
     {
     case 1:
-        printf("\nCartesian Number: %lf + %lfi", num.real, num.imag);
+        if (num.imag < 0)
+        {
+            printf("Cartesian Number: %lf %lfi", num.real, num.imag);
+        }
+        else
+        {
+            printf("Cartesian Number: %lf + %lfi", num.real, num.imag);
+        }
+
         break;
     case 2:
         printf("Polar1 Format: z = %lf*e^(i*%lf)", mag, ang);
